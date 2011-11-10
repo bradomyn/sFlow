@@ -1,0 +1,44 @@
+Copyright (c) 2002-2008 InMon Corp. Licensed under the terms of the InMon sFlow licence:
+http://www.inmon.com/technology/sflowlicense.txt
+
+		sFlow Agent README
+		==================
+
+RCS 			- directory for version control (see ci(1))
+
+sflow_api.h		- include file for sflow agent library.  All the
+	        	  external calls and callbacks are declared here.
+
+sflow.h			- structure definitions for the sflow sample packet.
+
+sflow_agent.C		- Agent object. Normally one per switch/router, but
+			  "agentSubId" can be used to distinguish multiple
+			  agents representing different parts of the same device.
+
+sflow_sampler.C		- Sampler object (one per interface/vlan).
+			  If implementing the SNMP MIB, then there will be
+			  one of these for each row in the SNMP table. Usually
+			  all the Samplers are created and given to the
+			  Agent at initialization time.
+
+sflow_poller.C		- Sampler object (one per interface/vlan).
+			  If implementing the SNMP MIB, then there will be
+			  one of these for each row in the SNMP table. Usually
+			  all the Samplers are created and given to the
+			  Agent at initialization time.
+
+sflow_receiver.C	- Receiver object.  Usually created at startup as a list
+			  of available "slots" coressponding to rows in the receiver
+			  table of the MIB.
+
+sflsp.C			- Example program. Implements a rudimentary Sflow
+			  Agent using the libpcap packet capture library
+			  (see tcpdump(1)).
+
+Makefile		- Makefile for builing sflsp program.
+
+
+Neil McKee
+InMon Corp.
+http://www.inmon.com
+tel: 415-283-3265

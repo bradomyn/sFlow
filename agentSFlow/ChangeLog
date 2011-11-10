@@ -1,0 +1,59 @@
+19-Mar-2010 (v6.4)
+	bugfix: repair jump table when removing sampler (thank you CW Chung)
+	add code to define and export Processor counters (tag=0:1001).
+19-Feb-2010 (v6.3)
+	bugfix: preserve hash_nxt ptr in sfl_sampler_init (thank you Andy Kitingman)
+	bugfix: allow polling interval of 0 to disable polling (thank you Andy Kitingman)
+5-Oct-2009 (v6.2)
+	- bugfix: rcvIdx never incremented in sfl_agent_resetReceiver (thank you Diego Valverde for pointing this out)
+	- bugfix: linked-list ptr was not preserved in sflow_sampler:reset() and sflow_poller:reset() (thank you Matt Woodly for pointing this out)
+28-Apr-2008
+	- bugfix: set sa4->sin_port in initSocket() (bug introduced in 6.0)
+6-Feb-2008
+	- 6.0: improved support for IPv6 sFlow agents
+	- bugfix: sflow_receiver.C was adjusting send packet format based on reciever address (IPv4/v6) instead of agent address
+	- modified sflsp.C to allow IPv6 agent and/or IPv6 collector
+22-May-2007
+	- bugfix: test mode was assuming that sp->ifIndex was == 1
+	- stopped using multi-line strings (deprecated in compiler)
+30-Aug-2005
+	- query the MAC address so we can use it to discern input v output. Report full-duplex counters. Fill in input and output ports correctly. Now works with sFlowTrend.
+	- options to allow ifIndex and ifSpeed to be overridden
+	- improved 'usage' string
+	- removed Pentium-specific include file cycles.h. It was only used for performance profiling anyway
+1-Jan-2005
+	- fixed bug in sflow_sampler.C:sfl_sampler_init() that was causing sfl_sampler_reset() to zero the dsi.  Also fixed
+	  same problem in sfl_poller_init.  Thanks to Jagjit Choudray of Force 10 Networks for pointing out the problem.
+17-Jun-2004
+	- added support for SFLFLOW_SAMPLE_EXPANDED format (using preprocessor flag SFL_USE_32BIT_INDEX)
+	- fixed bug in sflsp.C related to use of stripped field (since libpcap does not give us the FCS bytes)
+	- SFLDataSource_instance now defined as structure, rather than bit-packed 64bit integer.
+	- agent->jumpTable now implemented as hashTable.
+	- support for additional MPLS and VLAN structures defined in sFlow v5
+20-Nov-2003
+	- used stripped field in sflsp.C
+	- added sfl_sampler_tick and samplingRate backoff threshold
+	- sfl_receiver_writeFlowSample and sfl_receiver_writeCountersSample now return the bytes written
+18-Jul-2003
+	- added stripped field to header sample structure
+19-Jun-2003
+	5.0: sFlow version 5
+	- added nexthop address to gateway flow-sample structure (BGP next hop)
+13-Feb-2003
+	5.0: sFlow version 5 datagram
+	- ds_class, ds_index and instance now all encoded together in one 64-bit integer (SFLDataSource_instance)
+	- sampler object now split into sampler and poller
+	- receiver (formerly "target") now handles reservation timeout, in accordance with new MIB
+	- all "INM", "inm" and "inmon" prefixes replaced with "SFL", "sfl" and "sflow" respectively
+	- flow and counter samples now submitted using linked-list of "elements"
+	- new MPLS and NAT extended flow information elements
+	- URL element includes additional "host" fields
+	- agent_sub_id field allows multiple sFlow agents distributed on one switch
+	- tag-length-value encoding at the element level (INMTarget encoder calculates all length fields)
+	- SFLSampled_header.header_bytes now submitted using pointer, which eliminates a copy and allows for samples of arbitrary length (although encoder will reject a sample if it is too long to fit in one datagram).
+	- generic counter block no longer included in specific counter-blocks. Thus to submit generic+ethernet counters requires two counter block elements in the linked list.
+	
+	
+5-Aug-2002
+	4.0: support for sFlow version 4 datagram (RFC 3176)
+	
