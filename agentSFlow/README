@@ -1,10 +1,30 @@
-Copyright (c) 2002-2008 InMon Corp. Licensed under the terms of the InMon sFlow licence:
-http://www.inmon.com/technology/sflowlicense.txt
+White Rabbit Switch sFlow v1.0, based on sFlow v 5
+
+Author:     Cesar Prados (c.prados@gsi.de) 
+
+Short info: Implementation of the White Rabbit Switch sFlow Network Traffic Mmonitor
+            The sFlow daemon follows the api and data structures proposed by the 
+            sFlow consortium.
+
 
 		sFlow Agent README
 		==================
 
-RCS 			- directory for version control (see ci(1))
+
+netsflow.h      - data structure of networking sFlow configuration
+
+
+
+doesn't exist yet, they should be in case we want host and applications 
+configuration and values in sFlow
+
+hostsflow.h      - data structure of host sFlow configuration
+
+appsflow.h      - data structure of app sFlow configuration
+
+
+//TO MODIFY, BELOW
+
 
 sflow_api.h		- include file for sflow agent library.  All the
 	        	  external calls and callbacks are declared here.
@@ -36,9 +56,3 @@ sflsp.C			- Example program. Implements a rudimentary Sflow
 			  (see tcpdump(1)).
 
 Makefile		- Makefile for builing sflsp program.
-
-
-Neil McKee
-InMon Corp.
-http://www.inmon.com
-tel: 415-283-3265
